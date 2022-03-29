@@ -28,13 +28,70 @@ fn to_binary(mut decimal: i32) -> Vec<i32>{
             decimal /= 2;
         }
     }
-    bin.reverse();
     bin
 }
 
+fn add(mut a : Vec<i32>, mut b: Vec<i32>) -> Vec<i32> {
+
+    if a.len() > b.len() {
+        let tmp = a;
+        a = b;
+        b = tmp;
+    }
+
+    let mut carry  = 0;
+    let mut i = 0;
+    let mut res = Vec::new();
+
+    while i < a.len() {
+        let s = a[i] + b[i] + carry;
+        if s == 0 {
+            res.push(0);
+            carry = 0;
+        }else if s == 1 {
+            res.push(1);
+            carry = 0;
+        }else if s == 2{
+            res.push(0);
+            carry = 1;
+        }else{
+            res.push(1);
+            carry = 1;
+        }
+
+        i += 1;
+    }
+
+    while i < b.len() {
+        let s = b[i] + carry;
+        if s == 0 {
+            res.push(0);
+            carry = 0;
+        }else if s == 1 {
+            res.push(1);
+            carry = 0;
+        }else if s == 2{
+            res.push(0);
+            carry = 1;
+        }else{
+            res.push(1);
+            carry = 1;
+        }
+
+        i += 1;
+    }
+
+    res
+}
+
 fn main() {
-    let number = input("Enter an input");
-    println!("{:?}", to_binary(number));
+    let num1 = input("Enter number 1");
+    let num2 = input("Enter number 2");
+    let bin1 = to_binary(num1);
+    let bin2 = to_binary(num2);
+    println!("{:?}", bin1);
+    println!("{:?}\n", bin2);
+    println!("{:?} + {:?} = {:?}\n", bin1, bin2, add(bin1.clone(), bin2.clone()));
 }
 
 
