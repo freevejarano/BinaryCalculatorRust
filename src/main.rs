@@ -44,6 +44,7 @@ fn add(mut a : Vec<i32>, mut b: Vec<i32>) -> Vec<i32> {
     let mut res = Vec::new();
 
     while i < a.len() {
+        println!("{} + {} + {} = ", a[i], b[i], carry);
         let s = a[i] + b[i] + carry;
         if s == 0 {
             res.push(0);
@@ -58,7 +59,7 @@ fn add(mut a : Vec<i32>, mut b: Vec<i32>) -> Vec<i32> {
             res.push(1);
             carry = 1;
         }
-
+        println!("{}, {} ", res[i], carry);
         i += 1;
     }
 
@@ -81,6 +82,10 @@ fn add(mut a : Vec<i32>, mut b: Vec<i32>) -> Vec<i32> {
         i += 1;
     }
 
+    if carry == 1{
+        res.push(1);
+    }
+
     res
 }
 
@@ -91,7 +96,9 @@ fn main() {
     let bin2 = to_binary(num2);
     println!("{:?}", bin1);
     println!("{:?}\n", bin2);
-    println!("{:?} + {:?} = {:?}\n", bin1, bin2, add(bin1.clone(), bin2.clone()));
+    let mut sum = add(bin1.clone(), bin2.clone());
+    sum.reverse();
+    println!("{:?} + {:?} = {:?}\n", bin1, bin2, sum);
 }
 
 
