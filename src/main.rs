@@ -63,14 +63,14 @@ fn sum(mut a: Vec<i32>, mut b: Vec<i32>)->Vec<i32>{
 }
 
 fn mult(mut num: i32, mut num2: i32)->Vec<i32>{
-    let mut a = to_binary(num);
-    let mut b = to_binary(num2);
-    let mut suma = a;
+    let mut suma = to_binary(num);
     for i in 0..num2-1{ //B en decimal
         suma = sum(to_binary(num), suma);
     }
     suma
 }
+
+
 
 
 fn main() {
@@ -80,7 +80,7 @@ fn main() {
     /*let mut suma = sum(to_binary(number), to_binary(number2));
     suma.reverse();
     println!("{:?}", suma);*/
-    
+
     let mut multi = mult(number, number2);
     multi.reverse();
     println!("{:?}",multi);
