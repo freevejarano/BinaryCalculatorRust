@@ -30,25 +30,31 @@ fn to_binary(mut decimal: i32) -> Vec<i32>{
             decimal /= 2;
         }
     }
-    bin.reverse();
     bin
 }
 
 fn sum(mut a: Vec<i32>, mut b: Vec<i32>)->Vec<i32>{
     let max_len = cmp::max(a.len(), b.len());
-
+    let mut ax = 0;
+    let mut bx = 0;
     while a.len() != max_len || b.len()!=max_len{
         if a.len() != max_len {
-            a.reverse();
             a.push(0);
-            a.reverse();
+            ax += 1;
         }else if b.len() != max_len {
-            b.reverse();
             b.push(0);
-            b.reverse();
+            bx += 1;
         }
-
     }
+
+    if ax != 0{
+        a.reverse();
+    }else if bx !=0{
+        b.reverse();
+    }
+
+    println!("{:?}",a);
+    println!("{:?}",b);
 
     let mut result = Vec::new();
     let mut carry = 0;
