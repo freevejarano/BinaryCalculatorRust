@@ -31,6 +31,21 @@ fn to_binary(mut decimal: i32) -> Vec<i32>{
     bin
 }
 
+fn to_dec(bin : Vec<i32>) -> i32 {
+    let mut exp = 0;
+    let mut dec: i32 = 0;
+    let base: i32 = 2;
+
+    for b in bin {
+        if b == 1 {
+            dec += base.pow(exp);
+        }
+        exp += 1;
+    }
+
+    dec
+}
+
 fn add(mut a : Vec<i32>, mut b: Vec<i32>) -> Vec<i32> {
 
     if a.len() > b.len() {
@@ -44,7 +59,6 @@ fn add(mut a : Vec<i32>, mut b: Vec<i32>) -> Vec<i32> {
     let mut res = Vec::new();
 
     while i < a.len() {
-        println!("{} + {} + {} = ", a[i], b[i], carry);
         let s = a[i] + b[i] + carry;
         if s == 0 {
             res.push(0);
@@ -96,9 +110,10 @@ fn main() {
     let bin2 = to_binary(num2);
     println!("{:?}", bin1);
     println!("{:?}\n", bin2);
-    let mut sum = add(bin1.clone(), bin2.clone());
-    sum.reverse();
-    println!("{:?} + {:?} = {:?}\n", bin1, bin2, sum);
+    let sum = add(bin1.clone(), bin2.clone());
+    let sum_reversed = sum.clone().reverse();
+    println!("{:?} + {:?} = {:?}\n", bin1, bin2, sum_reversed);
+    println!("{} + {} = {}\n", num1, num2, to_dec(sum));
 }
 
 
