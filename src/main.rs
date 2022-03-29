@@ -153,7 +153,6 @@ fn mult(num: i32, num2: i32)->Vec<i32>{
     suma
 }
 
-
 fn div(a : Vec<i32>,    b: Vec<i32>) -> Vec<i32> {
     let mut count = 0;
     let mut diff_dec = to_dec(a.clone());
@@ -168,34 +167,110 @@ fn div(a : Vec<i32>,    b: Vec<i32>) -> Vec<i32> {
     to_binary(count)
 }
 
+fn complementoA2(mut a: Vec<i32>)->Vec<i32>{
+    let n = a.len();
+    let mut i = n - 1;
+    while i>=0{
+        if a[i] == 1{
+            break;
+        }
+        i -= 1;
+    }
+    if i == !0{
+        a
+    }else{
+        let mut k = i - 1;
+        while k >= 0{
+            if a[k] == 1{
+                a[k] = 0;
+            }else{
+                a[k] = 1;
+            }
+        }
+        a
+    }
+}
+
+fn add_neg(mut a: i32, mut b: i32)->Vec<i32>{
+    let mut total = Vec::new();
+    let mut aC;
+    let mut bC;
+    if a<0{
+        aC = complementoA2(to_binary(a.abs()));
+    }else{
+        aC = to_binary(a.abs());
+    }
+
+    if b<0{
+        bC = complementoA2(to_binary(b.abs()));
+    }else{
+        bC = to_binary(b.abs());
+    }
+    let mut result = Vec::new();
+    if (a+b) < 0 {
+        result = complementoA2(sum(to_binary(a), to_binary(b)));
+        total.push(sum(aC,bC)[-8:])
+        total.push("-"+result[-8:])
+        total.append("-"+to_dec(result[-8:]))
+    }else{
+        result=sum(aC,bC)
+        total.push(result[-8:])
+        total.push(result[-8:])
+        total.push(to_dec(result[-8:])))
+    }
+
+    total
+}
+
 fn main() {
-    let num1 = input("Enter number 1");
-    let num2 = input("Enter number 2");
-    let bin1 = to_binary(num1);
-    let bin2 = to_binary(num2);
-    println!("{:?}", bin1);
-    println!("{:?}\n", bin2);
-    let sum = add(bin1.clone(), bin2.clone());
-    let diff = sub(bin1.clone(), bin2.clone());
-    let multi = mult(num1, num2);
-    let quo = div(bin1.clone(), bin2.clone());
+    let mut number= 0;
+    let mut number2= 0;
+    let mut bin1 = Vec::new();
+    let mut bin2 = Vec::new();
 
-    let mut sum_reversed = sum.clone();
-    sum_reversed.reverse();
-    let mut diff_reversed = diff.clone();
-    diff_reversed.reverse();
-    let mut multi_reversed = multi.clone();
-    multi_reversed.reverse();
-    let mut quo_reversed = quo.clone();
-    quo_reversed.reverse();
-
-    println!("{:?} + {:?} = {:?}\n", bin1, bin2, sum_reversed);
-    println!("{} + {} = {}\n", num1, num2, to_dec(sum));
-    println!("{:?} - {:?} = {:?}\n", bin1, bin2, diff_reversed);
-    println!("{} - {} = {}\n", num1, num2, to_dec(diff));
-    println!("{:?} * {:?} = {:?}\n", bin1, bin2, multi_reversed);
-    println!("{} * {} = {}\n", num1, num2, to_dec(multi));
-    println!("{:?} / {:?} = {:?}\n", bin1, bin2, quo_reversed);
-    println!("{} / {} = {}\n", num1, num2, to_dec(quo));
+    loop{
+        let option = input("\n Ingresa una opción: \n 1.Suma \n 2.Resta \n 
+        3.Multiplicación \n 4.División \n 5. Suma con signo \n 6. Resta con signo
+        \n 7. Multiplicación con signo \n 8. División con signo \n 9.Salir");
+        if option > 0 && option < 9{
+            number = input("Ingresa un numero: ");
+            number2 = input("Ingresa un numero: ");
+            bin1 = to_binary(num1);
+            bin2 = to_binary(num2);
+            println!("{:?}", bin1);
+            println!("{:?}\n", bin2);
+        }
+        if option==1 {
+            let sum = add(bin1.clone(), bin2.clone());
+            println!("{} + {} = {}\n", num1, num2, to_dec(sum));
+        }
+        if option==2 {
+            let diff = sub(bin1.clone(), bin2.clone());
+            println!("{} - {} = {}\n", num1, num2, to_dec(diff));
+        }
+        if option==3 {
+            let multi = mult(num1, num2);
+            println!("{} * {} = {}\n", num1, num2, to_dec(multi));
+        }
+        if option==4 {
+            let quo = div(bin1.clone(), bin2.clone());
+            println!("{} / {} = {}\n", num1, num2, to_dec(quo));
+        }
+        if option==5 {
+            
+        }
+        if option==6 {
+            
+        }
+        if option==7 {
+            
+        }
+        if option==8 {
+            
+        }
+        if option==9 {
+            
+        }
+    }
 }
 
