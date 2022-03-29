@@ -145,6 +145,15 @@ fn sub(mut a : Vec<i32>, mut b: Vec<i32>)  -> Vec<i32> {
     res
 }
 
+fn mult(num: i32, num2: i32)->Vec<i32>{
+    let mut suma = to_binary(num);
+    for _i in 0..num2-1{ //B en decimal
+        suma = add(to_binary(num), suma);
+    }
+    suma
+}
+
+
 fn div(a : Vec<i32>,    b: Vec<i32>) -> Vec<i32> {
     let mut count = 0;
     let mut diff_dec = to_dec(a.clone());
@@ -168,12 +177,15 @@ fn main() {
     println!("{:?}\n", bin2);
     let sum = add(bin1.clone(), bin2.clone());
     let diff = sub(bin1.clone(), bin2.clone());
+    let multi = mult(num1, num2);
     let quo = div(bin1.clone(), bin2.clone());
 
     let mut sum_reversed = sum.clone();
     sum_reversed.reverse();
     let mut diff_reversed = diff.clone();
     diff_reversed.reverse();
+    let mut multi_reversed = multi.clone();
+    multi_reversed.reverse();
     let mut quo_reversed = quo.clone();
     quo_reversed.reverse();
 
@@ -181,8 +193,9 @@ fn main() {
     println!("{} + {} = {}\n", num1, num2, to_dec(sum));
     println!("{:?} - {:?} = {:?}\n", bin1, bin2, diff_reversed);
     println!("{} - {} = {}\n", num1, num2, to_dec(diff));
+    println!("{:?} * {:?} = {:?}\n", bin1, bin2, multi_reversed);
+    println!("{} * {} = {}\n", num1, num2, to_dec(multi));
     println!("{:?} / {:?} = {:?}\n", bin1, bin2, quo_reversed);
     println!("{} / {} = {}\n", num1, num2, to_dec(quo));
 }
-
 
