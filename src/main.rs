@@ -141,7 +141,6 @@ fn sub(mut a : Vec<i32>, mut b: Vec<i32>)  -> Vec<i32> {
     if borrow  > 0 {
         res.push(1);
     }
-
     res
 }
 
@@ -163,10 +162,62 @@ fn div(a : Vec<i32>,    b: Vec<i32>) -> Vec<i32> {
         diff_dec = to_dec(diff.clone());
         count += 1;
     }
-
     to_binary(count)
 }
 
+fn main() {
+    let mut num1= 0;
+    let mut num2= 0;
+    let mut bin1 = Vec::new();
+    let mut bin2 = Vec::new();
+
+    loop{
+        let option = input("\n Ingresa una opción: \n 1.Suma \n 2.Resta \n 3.Multiplicación \n 4.División \n 5.Salir");
+        if option==5{
+            break;
+        }
+        num1 = input("Ingresa un numero: ");
+        num2 = input("Ingresa un numero: ");
+        bin1 = to_binary(num1);
+        bin2 = to_binary(num2);
+        let mut bin1copy = bin1.clone();
+        let mut bin2copy = bin2.clone();
+        bin1copy.reverse();
+        bin2copy.reverse();
+        println!("{:?}", bin1copy);
+        println!("{:?}\n", bin2copy);
+        if option==1 {
+            let sum = add(bin1.clone(), bin2.clone());
+            println!("{} + {} = {}\n", num1, num2, to_dec(sum));
+            let mut res2 = add(bin1.clone(), bin2.clone()).clone();
+            res2.reverse();
+            println!("El resultado es: {:?}", res2);
+        }
+        if option==2 {
+            let diff = sub(bin1.clone(), bin2.clone());
+            println!("{} - {} = {}\n", num1, num2, to_dec(diff));
+            let mut res2 = sub(bin1.clone(), bin2.clone()).clone();
+            res2.reverse();
+            println!("El resultado es: {:?}", res2);
+        }
+        if option==3 {
+            let multi = mult(num1, num2);
+            println!("{} * {} = {}\n", num1, num2, to_dec(multi));
+            let mut res2 = mult(num1,num2).clone();
+            res2.reverse();
+            println!("El resultado es: {:?}", res2);
+        }
+        if option==4 {
+            let quo = div(bin1.clone(), bin2.clone());
+            println!("{} / {} = {}\n", num1, num2, to_dec(quo));
+            let mut res2 = div(bin1.clone(), bin2.clone()).clone();
+            res2.reverse();
+            println!("El resultado es: {:?}", res2);
+        }
+    }
+}
+
+/*
 fn complementoA2(mut a: Vec<i32>)->Vec<i32>{
     let n = a.len();
     let mut i = n - 1;
@@ -189,8 +240,8 @@ fn complementoA2(mut a: Vec<i32>)->Vec<i32>{
         }
         a
     }
-}
-
+}*/
+/*
 fn add_neg(mut a: i32, mut b: i32)->Vec<i32>{
     let mut total = Vec::new();
     let mut aC;
@@ -208,69 +259,16 @@ fn add_neg(mut a: i32, mut b: i32)->Vec<i32>{
     }
     let mut result = Vec::new();
     if (a+b) < 0 {
-        result = complementoA2(sum(to_binary(a), to_binary(b)));
+        result = complementoA2(add(to_binary(a), to_binary(b)));
         total.push(sum(aC,bC)[-8:])
         total.push("-"+result[-8:])
         total.append("-"+to_dec(result[-8:]))
     }else{
-        result=sum(aC,bC)
+        result=add(aC,bC)
         total.push(result[-8:])
         total.push(result[-8:])
         total.push(to_dec(result[-8:])))
     }
 
     total
-}
-
-fn main() {
-    let mut number= 0;
-    let mut number2= 0;
-    let mut bin1 = Vec::new();
-    let mut bin2 = Vec::new();
-
-    loop{
-        let option = input("\n Ingresa una opción: \n 1.Suma \n 2.Resta \n 
-        3.Multiplicación \n 4.División \n 5. Suma con signo \n 6. Resta con signo
-        \n 7. Multiplicación con signo \n 8. División con signo \n 9.Salir");
-        if option > 0 && option < 9{
-            number = input("Ingresa un numero: ");
-            number2 = input("Ingresa un numero: ");
-            bin1 = to_binary(num1);
-            bin2 = to_binary(num2);
-            println!("{:?}", bin1);
-            println!("{:?}\n", bin2);
-        }
-        if option==1 {
-            let sum = add(bin1.clone(), bin2.clone());
-            println!("{} + {} = {}\n", num1, num2, to_dec(sum));
-        }
-        if option==2 {
-            let diff = sub(bin1.clone(), bin2.clone());
-            println!("{} - {} = {}\n", num1, num2, to_dec(diff));
-        }
-        if option==3 {
-            let multi = mult(num1, num2);
-            println!("{} * {} = {}\n", num1, num2, to_dec(multi));
-        }
-        if option==4 {
-            let quo = div(bin1.clone(), bin2.clone());
-            println!("{} / {} = {}\n", num1, num2, to_dec(quo));
-        }
-        if option==5 {
-            
-        }
-        if option==6 {
-            
-        }
-        if option==7 {
-            
-        }
-        if option==8 {
-            
-        }
-        if option==9 {
-            
-        }
-    }
-}
-
+}*/
