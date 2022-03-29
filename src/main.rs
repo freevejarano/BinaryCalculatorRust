@@ -35,15 +35,12 @@ fn to_binary(mut decimal: i32) -> Vec<i32>{
 
 fn sum(mut a: Vec<i32>, mut b: Vec<i32>)->Vec<i32>{
     let max_len = cmp::max(a.len(), b.len());
-    let mut ax = 0;
-    let mut bx = 0;
+
     while a.len() != max_len || b.len()!=max_len{
         if a.len() != max_len {
             a.push(0);
-            ax += 1;
         }else if b.len() != max_len {
             b.push(0);
-            bx += 1;
         }
     }
 
@@ -65,13 +62,28 @@ fn sum(mut a: Vec<i32>, mut b: Vec<i32>)->Vec<i32>{
     result
 }
 
+fn mult(mut num: i32, mut num2: i32)->Vec<i32>{
+    let mut a = to_binary(num);
+    let mut b = to_binary(num2);
+    let mut suma = a;
+    for i in 0..num2-1{ //B en decimal
+        suma = sum(to_binary(num), suma);
+    }
+    suma
+}
+
+
 fn main() {
     let number = input("Ingresa un numero: ");
     let number2 = input("Ingresa un numero: ");
     
-    let mut suma = sum(to_binary(number), to_binary(number2));
+    /*let mut suma = sum(to_binary(number), to_binary(number2));
     suma.reverse();
-    println!("{:?}", suma);
+    println!("{:?}", suma);*/
+    
+    let mut multi = mult(number, number2);
+    multi.reverse();
+    println!("{:?}",multi);
 }
 
 
