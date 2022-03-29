@@ -1,4 +1,5 @@
 use std::io;
+use std::cmp::max;
 
 fn input(msg: &str) -> i32 {
     println!("{}", msg);
@@ -73,7 +74,6 @@ fn add(mut a : Vec<i32>, mut b: Vec<i32>) -> Vec<i32> {
             res.push(1);
             carry = 1;
         }
-        println!("{}, {} ", res[i], carry);
         i += 1;
     }
 
@@ -103,6 +103,48 @@ fn add(mut a : Vec<i32>, mut b: Vec<i32>) -> Vec<i32> {
     res
 }
 
+fn sub(mut a : Vec<i32>, mut b: Vec<i32>)  -> Vec<i32> {
+    
+    let max_len = max(a.len(), b.len());
+    if max_len == a.len() {
+        while b.len() < max_len {
+            b.push(0);
+        }
+    }else {
+        while a.len() < max_len {
+            a.push(0);
+        }
+    }
+    
+    
+    let mut i = 0;
+    let mut borrow = 0;
+    let mut res = Vec::new();
+
+    while i < max_len {
+        let diff = a[i] - b[i] - borrow;
+        if diff % 2 == 0 {
+            res.push(0);
+        }else{
+            res.push(1);
+        }
+
+        if diff < 0 {
+            borrow = 1;
+        } else {
+            borrow = 0;
+        }
+
+        i += 1;
+    }
+
+    if borrow  > 0 {
+        res.push(1);
+    }
+
+    res
+}
+
 fn main() {
     let num1 = input("Enter number 1");
     let num2 = input("Enter number 2");
@@ -111,9 +153,16 @@ fn main() {
     println!("{:?}", bin1);
     println!("{:?}\n", bin2);
     let sum = add(bin1.clone(), bin2.clone());
-    let sum_reversed = sum.clone().reverse();
+    let diff = sub(bin1.clone(), bin2.clone());
+    let mut sum_reversed = sum.clone();
+    sum_reversed.reverse();
+    let mut diff_reversed = diff.clone();
+    diff_reversed.reverse();
+
     println!("{:?} + {:?} = {:?}\n", bin1, bin2, sum_reversed);
     println!("{} + {} = {}\n", num1, num2, to_dec(sum));
+    println!("{:?} - {:?} = {:?}\n", bin1, bin2, diff_reversed);
+    println!("{} - {} = {}\n", num1, num2, to_dec(diff));
 }
 
 
