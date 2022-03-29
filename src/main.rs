@@ -47,40 +47,31 @@ fn sum(mut a: Vec<i32>, mut b: Vec<i32>)->Vec<i32>{
         }
     }
 
-    if ax != 0{
-        a.reverse();
-    }else if bx !=0{
-        b.reverse();
-    }
-
-    println!("{:?}",a);
-    println!("{:?}",b);
-
     let mut result = Vec::new();
     let mut carry = 0;
-    let mut i = max_len + 1;
+    let mut i = 0;
 
-    while i > 1{
+    for i in 0..max_len{
         let mut r = carry;
-        r = r + a[i-2];
-        r = r + b[i-2];
+        r = r + a[i];
+        r = r + b[i];
         result.push(if (r % 2 == 1) {1} else{0});
         carry = if r < 2 {0} else{1};
-        i -= 1;
     }
+
     if carry != 0 {
         result.push(1);
     }
-    result.reverse();
-    println!("{:?}", result);
     result
 }
 
 fn main() {
     let number = input("Ingresa un numero: ");
     let number2 = input("Ingresa un numero: ");
-    //println!("{:?}", to_binary(number));
-    sum(to_binary(number), to_binary(number2));
+    
+    let mut suma = sum(to_binary(number), to_binary(number2));
+    suma.reverse();
+    println!("{:?}", suma);
 }
 
 
