@@ -70,20 +70,98 @@ fn mult(mut num: i32, mut num2: i32)->Vec<i32>{
     suma
 }
 
+fn complementoA2(mut a: Vec<i32>)->Vec<i32>{
+    let n = a.len();
+    let mut i = n - 1;
+    while i>=0{
+        if a[i] == 1{
+            break;
+        }
+        i -= 1;
+    }
+    if i == !0{
+        a
+    }else{
+        let mut k = i - 1;
+        while k >= 0{
+            if a[k] == 1{
+                a[k] = 0;
+            }else{
+                a[k] = 1;
+            }
+        }
+        a
+    }
+}
 
+fn sum_neg(mut a: i32, mut b: i32)->Vec<i32>{
+    let mut total = Vec::new();
+    let mut aC;
+    let mut bC;
+    if a<0{
+        aC = complementoA2(to_binary(a.abs()));
+    }else{
+        aC = to_binary(a.abs());
+    }
 
+    if b<0{
+        bC = complementoA2(to_binary(b.abs()));
+    }else{
+        bC = to_binary(b.abs());
+    }
+    let mut result = Vec::new();
+    if (a+b) < 0 {
+        
+    }
+
+    total
+}
 
 fn main() {
-    let number = input("Ingresa un numero: ");
-    let number2 = input("Ingresa un numero: ");
-    
-    /*let mut suma = sum(to_binary(number), to_binary(number2));
-    suma.reverse();
-    println!("{:?}", suma);*/
+    let mut number= 0;
+    let mut number2= 0;
+    loop{
+        let option = input("\n Ingresa una opción: \n 1.Suma \n 2.Resta \n 
+        3.Multiplicación \n 4.División \n 5. Suma con signo \n 6. Resta con signo
+        \n 7. Multiplicación con signo \n 8. División con signo \n 9.Salir");
+        if option > 0 && option < 9{
+            number = input("Ingresa un numero: ");
+            number2 = input("Ingresa un numero: ");
+        }
+        if option==1 {
+            let mut suma = sum(to_binary(number), to_binary(number2));
+            suma.reverse();
+            println!("{:?}", suma);
+        }
+        if option==2 {
+            
+        }
+        if option==3 {
+            let mut multi = mult(number, number2);
+            multi.reverse();
+            println!("{:?}",multi);
+        }
+        if option==4 {
 
-    let mut multi = mult(number, number2);
-    multi.reverse();
-    println!("{:?}",multi);
+        }
+        if option==5 {
+            
+        }
+        if option==6 {
+            
+        }
+        if option==7 {
+            
+        }
+        if option==8 {
+            
+        }
+        if option==9 {
+            
+        }
+    }
+
+
 }
 
 
