@@ -191,28 +191,28 @@ fn main() {
             println!("{} + {} = {}\n", num1, num2, to_dec(sum));
             let mut res2 = add(bin1.clone(), bin2.clone()).clone();
             res2.reverse();
-            println!("El resultado es: {:?}", res2);
+            println!("{:?} + {:?} = {:?}\n", bin1copy, bin2copy, res2);
         }
         if option==2 {
             let diff = sub(bin1.clone(), bin2.clone());
             println!("{} - {} = {}\n", num1, num2, to_dec(diff));
             let mut res2 = sub(bin1.clone(), bin2.clone()).clone();
             res2.reverse();
-            println!("El resultado es: {:?}", res2);
+            println!("{:?} - {:?} = {:?}\n", bin1copy, bin2copy, res2);
         }
         if option==3 {
             let multi = mult(num1, num2);
             println!("{} * {} = {}\n", num1, num2, to_dec(multi));
             let mut res2 = mult(num1,num2).clone();
             res2.reverse();
-            println!("El resultado es: {:?}", res2);
+            println!("{:?} * {:?} = {:?}\n", bin1copy, bin2copy, res2);
         }
         if option==4 {
             let quo = div(bin1.clone(), bin2.clone());
             println!("{} / {} = {}\n", num1, num2, to_dec(quo));
             let mut res2 = div(bin1.clone(), bin2.clone()).clone();
             res2.reverse();
-            println!("El resultado es: {:?}", res2);
+            println!("{:?} / {:?} = {:?}\n", bin1copy, bin2copy, res2);
         }
     }
 }
